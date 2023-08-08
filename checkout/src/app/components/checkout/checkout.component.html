@@ -1,7 +1,22 @@
 <div id="payment-page">
   <div class="container">
     <div class="payment-container">
-      <div #hook id="{{ type }}" class="payment"></div>
+      <!-- <div #hook id="{{ type }}" class="payment"></div> -->
+      <div #hook id="customCard-container">
+        <label>
+            <span>Card number:</span>
+            <span data-cse="encryptedCardNumber"></span>
+        </label>
+        <label>
+            <span>Expiry date:</span>
+            <span data-cse="encryptedExpiryDate"></span>
+        </label>
+        <label>
+            <span>CVV/CVC:</span>
+            <span data-cse="encryptedSecurityCode"></span>
+        </label>
+    </div>
+    
     </div>
   </div>
 </div>

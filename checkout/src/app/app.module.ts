@@ -16,7 +16,6 @@ import { ResultComponent } from './components/result/result.component';
     IndexComponent,
     HeaderComponent,
     PreviewComponent,
-    CheckoutComponent,
     ResultComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],

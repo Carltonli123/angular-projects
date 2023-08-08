@@ -65,10 +65,24 @@ export class CheckoutComponent implements OnInit {
       this.apiService.sessions().subscribe(
         (async res => {
 
-            // Create AdyenCheckout using Sessions response
-            const checkout = await this.createAdyenCheckout(res)
+          function handleOnChange(state: any, component: any) {
+            console.log(state.isValid), // True or false. Specifies if all the information that the shopper provided is valid.
+            console.log(state.data), // Provides the data that you need to pass in the `/payments` call.
+            console.log(component) // Provides the active component instance that called this event.
+        };
+       
+        const configuration = {
+            locale: "en_US",
+            environment: "test",
+            clientKey: "test_CHSGAF73YRAN3I6TDVGQSQVO4ETBP75D",
+            onChange: handleOnChange
+        };
 
-            await checkout.create(this.type).mount(this.hook.nativeElement);
+            // Create AdyenCheckout using Sessions response
+            const checkout = await this.createAdyenCheckout(res);
+
+            // await checkout.create(this.type).mount(this.hook.nativeElement);
+            await checkout.create('securedfields').mount(this.hook.nativeElement);
         }),
         (async error => {
           console.log('Error is: ', error);
@@ -86,7 +100,7 @@ export class CheckoutComponent implements OnInit {
 
       const configuration = {
           clientKey: this.clientKey,
-          locale: "en_US",
+          locale: "de_DE",
           environment: "test",  // change to live for production
           showPayButton: true,
           session: session,
